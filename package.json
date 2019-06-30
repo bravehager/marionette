@@ -1,17 +1,20 @@
 {
   "name": "marionette",
-  "version": "1.0.0",
-  "description": "Easy, readable instructions for Puppeteer-based web scraping",
-  "main": "index.js",
+  "version": "0.0.1",
+  "description": "Writable, readable instructions for Puppeteer-based web scraping",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "tsc && node dist/index.js"
   },
   "author": "Brave Hager",
   "license": "MIT",
   "devDependencies": {
+    "@types/jest": "^24.0.15",
     "@types/node": "^12.0.10",
     "@types/puppeteer": "^1.12.4",
-    "puppeteer": "^1.18.1"
+    "jest": "^24.8.0",
+    "puppeteer": "^1.18.1",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.5.2"
   }
 }
