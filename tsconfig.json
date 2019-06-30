@@ -19,7 +19,7 @@
     "excludePrivate": true,
     "exclude": [
       "**/*+(.test).ts",
-      "cli"
+      "**/cli.ts"
     ]
   }
 }
