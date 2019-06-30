@@ -38,6 +38,7 @@ export class Routine {
         for (let command of this.commands) {
             let { NEW_PAGE, GOTO, DEF, CLICK, TYPE, EXIT, EVALUATE } = Operation;
             let { type, args } = command;
+            args = args.map((arg) => definitions.get(arg) || arg);
 
             try {
                 switch (type) {
@@ -45,11 +46,12 @@ export class Routine {
                         page = await browser.newPage();
                         break;
                     case GOTO:
-                        let url = definitions.get(args[0]) || args[0];
-                        await page.goto(url);
+                        await page.goto(args[0]);
                         break;
                     case DEF:
-                        definitions.set(args[0], args[1]);
+                        let key: string = args[0];
+                        let value: string = args[1];
+                        definitions.set(key, value);
                         break;
                     case CLICK:
                         await page.click(args[0]);
@@ -61,8 +63,9 @@ export class Routine {
                         await browser.close();
                         break;
                     case EVALUATE:
-                        let script = fs.readFileSync(path.join(".", args[0]), { encoding: "utf-8" });
+                        let script: string = fs.readFileSync(path.join(".", args[0]), { encoding: "utf-8" });
                         await page.evaluate(script);
+                        break;
                     default:
                         break;
                 }

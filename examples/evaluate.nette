@@ -1,4 +1,7 @@
 # EVALUATE command example
+
 DEF google https://www.google.com
+DEF hello_world examples/js/hello_world.js
+
 GOTO google
-EVALUATE examples/hello_world.js
+EVALUATE hello_world
