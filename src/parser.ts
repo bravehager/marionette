@@ -1,12 +1,12 @@
 import { Command, Operation } from "./command";
-import Program from "./program";
+import Routine from "./routine";
 
 /**
- * Parse a .nette file into a runnable Program object.
+ * Parse a .nette file into a runnable Routine object.
  * @param contents
  * @param options 
  */
-export default function parse({ contents, options }: { contents: string; options: object; }): Program {
+export default function parse({ contents, options }: { contents: string; options: object; }): Routine {
     let commands: Command[] = [];
     let lines: string[] = contents.split("\n");
     for (let line of lines) {
@@ -18,7 +18,7 @@ export default function parse({ contents, options }: { contents: string; options
         }
     }
 
-    return new Program(commands);
+    return new Routine(commands);
 }
 
 function _validateCommandType(command: Command): boolean {

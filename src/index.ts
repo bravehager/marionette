@@ -1,21 +1,17 @@
 import parser from "./parser";
-import Program from "./program";
+import Routine from "./routine";
 import { Command } from "./command";
 import { Browser, Page } from "puppeteer";
 
-class Marionette {
+export default class Marionette {
     constructor() { }
 
-    async run({ browser, contents, options }: { browser: Browser; contents: string; options: object; }): Promise<{ browser: Browser, page: Page }> {
-        const program = parser({ contents, options });
-        return await program.run(browser);
+    static async run({ browser, contents, options }: { browser: Browser; contents: string; options: object; }): Promise<{ browser: Browser, page: Page }> {
+        const routine = parser({ contents, options });
+        return await routine.run(browser);
     }
 
-    parse({ contents, options }: {contents: string, options: object }): Program {
+    static parse({ contents, options }: {contents: string, options: object }): Routine {
         return parser({ contents, options });
     }
-}
-
-export default function marionette() {
-    return new Marionette;
 }
