@@ -1,0 +1,5 @@
+# Simple .nette example
+DEF google https://www.google.com
+GOTO google
+TYPE input[title="Search"] "marionette"
+CLICK input[value="Google Search"]
