@@ -2,9 +2,11 @@
   "name": "marionette",
   "version": "0.0.1",
   "description": "Writable, readable instructions for Puppeteer-based web scraping",
+  "main": "dist/index.js",
   "scripts": {
     "test": "jest",
-    "start": "tsc && node dist/index.js"
+    "start": "tsc && node dist/index.js",
+    "build:docs": "typedoc src"
   },
   "author": "Brave Hager",
   "license": "MIT",
@@ -15,6 +17,8 @@
     "jest": "^24.8.0",
     "puppeteer": "^1.18.1",
     "ts-jest": "^24.0.2",
+    "typedoc": "^0.14.2",
     "typescript": "^3.5.2"
-  }
+  },
+  "dependencies": {}
 }

@@ -1,8 +1,22 @@
 import { Command, Operation } from "./command";
-import { Browser, Page } from "puppeteer";
+import * as Puppeteer from "puppeteer";
 
-export default class Routine {
-    commands: Command[];
+/**
+ * A routine returns an object consisting of a Puppeteer Browser and Page.
+ */
+export interface RoutineResponse {
+    browser: Puppeteer.Browser;
+    page: Puppeteer.Page;
+}
+
+/**
+ * A Routine is a sequence of Puppeteer commands.
+ */
+export class Routine {
+    /**
+     * An array of commands which defines the routine.
+     */
+    private commands: Command[];
 
     constructor(commands: Command[]) {
         this.commands = commands;
@@ -10,11 +24,11 @@ export default class Routine {
 
     /**
      * Main function for executing a marionette routine.
-     * @param browser 
+     * @param browser
      */
-    async run(browser: Browser): Promise<{ browser: Browser, page: Page }> {
-        let pages: Page[] = await browser.pages();
-        let page: Page = pages[0];
+    async run(browser: Puppeteer.Browser): Promise<RoutineResponse> {
+        let pages: Puppeteer.Page[] = await browser.pages();
+        let page: Puppeteer.Page = pages[0];
 
         let definitions: Map<string, string> = new Map();
 
@@ -54,5 +68,4 @@ export default class Routine {
 
         return { browser, page };
     }
-
 }

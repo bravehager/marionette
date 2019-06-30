@@ -7,7 +7,12 @@ export enum Operation {
     EXIT = "EXIT"
 }
 
-export interface Command {
+export class Command {
     type: Operation;
     args: string[];
+
+    constructor(type: Operation, args: string[]) {
+        this.type = type;
+        this.args = args;
+    }
 }

@@ -9,5 +9,16 @@
   },
   "include": [
     "src/**/*"
-  ]
+  ],
+  "typedocOptions": {
+    "mode": "file",
+    "out": "docs",
+    "theme": "minimal",
+    "moduleResolution": "node",
+    "readme": "./README.md",
+    "excludePrivate": true,
+    "exclude": [
+        "**/*+(.test).ts"
+    ]
+  }
 }
