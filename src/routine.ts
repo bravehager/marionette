@@ -1,3 +1,6 @@
+import fs from "fs";
+import path from "path";
+
 import { Command, Operation } from "./command";
 import * as Puppeteer from "puppeteer";
 
@@ -33,7 +36,7 @@ export class Routine {
         let definitions: Map<string, string> = new Map();
 
         for (let command of this.commands) {
-            let { NEW_PAGE, GOTO, DEF, CLICK, TYPE, EXIT } = Operation;
+            let { NEW_PAGE, GOTO, DEF, CLICK, TYPE, EXIT, EVALUATE } = Operation;
             let { type, args } = command;
 
             try {
@@ -57,6 +60,9 @@ export class Routine {
                     case EXIT:
                         await browser.close();
                         break;
+                    case EVALUATE:
+                        let script = fs.readFileSync(path.join(".", args[0]), { encoding: "utf-8" });
+                        await page.evaluate(script);
                     default:
                         break;
                 }

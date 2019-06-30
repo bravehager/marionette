@@ -4,7 +4,8 @@ export enum Operation {
     DEF = "DEF",
     CLICK = "CLICK",
     TYPE = "TYPE",
-    EXIT = "EXIT"
+    EXIT = "EXIT",
+    EVALUATE = "EVALUATE"
 }
 
 export class Command {
