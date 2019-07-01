@@ -6,6 +6,7 @@ import puppeteer from "puppeteer";
 import { Routine } from "../routine";
 import { Parser } from "../parser";
 import { Command } from "commander";
+import { Lexer } from "../lexer";
 
 
 const program: Command = new Command();
@@ -18,7 +19,7 @@ program
         
         try {
             const contents: string = fs.readFileSync(path.join(".", file), { encoding: "utf-8" });
-            const routine: Routine = parser.parse({ contents });
+            const routine: Routine = parser.parse(Lexer.tokenize(contents));
             await routine.run(await puppeteer.launch({ headless: false }));
         } catch (error) {
             console.log(`No such file ${path.join(".", file)}`);

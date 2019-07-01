@@ -1,7 +1,8 @@
 import fs from "fs";
 import path from "path";
 
-import { Command, Operation } from "./command";
+import { Command } from "./command";
+import { Operation } from "./lexer";
 import * as Puppeteer from "puppeteer";
 
 /**
@@ -33,6 +34,9 @@ export class Routine {
         let pages: Puppeteer.Page[] = await browser.pages();
         let page: Puppeteer.Page = pages[0];
 
+        // Marionette maintains a HashMap of key-value definitions at runtime, which can be set
+        // using the DEF command. Because they're evaluated at runtime, they can change over the
+        // course of a routine, and include sub-routines as well.
         let definitions: Map<string, string> = new Map();
 
         for (let command of this.commands) {

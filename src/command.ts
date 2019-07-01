@@ -1,19 +1,15 @@
-export enum Operation {
-    NEW_PAGE = "NEW_PAGE",
-    GOTO = "GOTO",
-    DEF = "DEF",
-    CLICK = "CLICK",
-    TYPE = "TYPE",
-    EXIT = "EXIT",
-    EVALUATE = "EVALUATE"
-}
+import { Operation } from "./lexer";
 
 export class Command {
     type: Operation;
     args: string[];
 
-    constructor(type: Operation, args: string[]) {
+    constructor(type: Operation) {
         this.type = type;
-        this.args = args;
+        this.args = [];
+    }
+
+    push(arg: string): void {
+        this.args.push(arg);
     }
 }

@@ -912,8 +912,14 @@ img { max-width: 100%; }
 		<li class=" tsd-kind-enum">
 			<a href="../enums/operation.html" class="tsd-kind-icon">Operation</a>
 		</li>
+		<li class=" tsd-kind-enum">
+			<a href="../enums/type.html" class="tsd-kind-icon">Type</a>
+		</li>
 		<li class=" tsd-kind-class">
 			<a href="command.html" class="tsd-kind-icon">Command</a>
+		</li>
+		<li class=" tsd-kind-class">
+			<a href="lexer.html" class="tsd-kind-icon">Lexer</a>
 		</li>
 		<li class="current tsd-kind-class">
 			<a href="parser.html" class="tsd-kind-icon">Parser</a>
@@ -931,6 +937,9 @@ img { max-width: 100%; }
 		</li>
 		<li class=" tsd-kind-interface">
 			<a href="../interfaces/routineresponse.html" class="tsd-kind-icon">Routine<wbr>Response</a>
+		</li>
+		<li class=" tsd-kind-interface">
+			<a href="../interfaces/token.html" class="tsd-kind-icon">Token</a>
 		</li>
 	</ul>
 </nav>
@@ -982,7 +991,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/bravehager/marionette/blob/9126226/src/parser.ts#L7">parser.ts:7</a></li>
+								<li>Defined in <a href="https://github.com/bravehager/marionette/blob/daf6b20/src/parser.ts#L8">parser.ts:8</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <a href="parser.html" class="tsd-signature-type">Parser</a></h4>
@@ -996,29 +1005,24 @@ img { max-width: 100%; }
 				<a name="parse" class="tsd-anchor"></a>
 				<h3>parse</h3>
 				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-					<li class="tsd-signature tsd-kind-icon">parse<span class="tsd-signature-symbol">(</span>__namedParameters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="routine.html" class="tsd-signature-type">Routine</a></li>
+					<li class="tsd-signature tsd-kind-icon">parse<span class="tsd-signature-symbol">(</span>tokens<span class="tsd-signature-symbol">: </span><a href="../interfaces/token.html" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="routine.html" class="tsd-signature-type">Routine</a></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/bravehager/marionette/blob/9126226/src/parser.ts#L13">parser.ts:13</a></li>
+								<li>Defined in <a href="https://github.com/bravehager/marionette/blob/daf6b20/src/parser.ts#L14">parser.ts:14</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
 							<div class="lead">
-								<p>Parse a .nette file into a runnable Routine</p>
+								<p>Parse a tokenized .nette file into a runnable Routine.</p>
 							</div>
 						</div>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5>__namedParameters: <span class="tsd-signature-type">object</span></h5>
-								<ul class="tsd-parameters">
-									<li class="tsd-parameter">
-										<h5>contents<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-									</li>
-								</ul>
+								<h5>tokens: <a href="../interfaces/token.html" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol">[]</span></h5>
 							</li>
 						</ul>
 						<h4 class="tsd-returns-title">Returns <a href="routine.html" class="tsd-signature-type">Routine</a></h4>
