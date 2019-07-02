@@ -28,8 +28,6 @@ export class Lexer {
         while (source.length > 0) {
             source = this._pushNextToken(source, tokens);
         }
-        console.log(source);
-
         return tokens;
     }
 

@@ -22,7 +22,7 @@ export class Command {
 /**
  * A generic error for handling unexpected tokens during parsing.
  */
-class ParsingError extends Error { }
+export class ParsingError extends Error { }
 
 /**
  * The parser is responsible for converting an array of tokens into a runnable Marionette routine.

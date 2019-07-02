@@ -1,4 +1,4 @@
-# EVALUATE command example
+> EVALUATE command example
 
 DEF google https://www.google.com
 DEF hello_world examples/js/hello_world.js
