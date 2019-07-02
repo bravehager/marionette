@@ -1,0 +1,3 @@
+# Simple .nette example
+DEF google https://www.google.com
+GOTO google 

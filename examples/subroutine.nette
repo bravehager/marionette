@@ -1,0 +1,14 @@
+# Marionette supports subroutines
+
+ROUTINE google
+    DEF google https://www.google.com
+    GOTO google
+
+    ROUTINE hello_world
+        DEF hello_world examples/js/hello_world.js
+        EVALUATE hello_world
+    END
+
+END
+
+RUN google
