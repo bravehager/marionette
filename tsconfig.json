@@ -7,9 +7,7 @@
     "esModuleInterop": true,
     "baseUrl": "."
   },
-  "include": [
-    "src/**/*"
-  ],
+  "include": ["src/**/*"],
   "typedocOptions": {
     "mode": "file",
     "out": "docs",
@@ -17,9 +15,6 @@
     "moduleResolution": "node",
     "readme": "./README.md",
     "excludePrivate": true,
-    "exclude": [
-      "**/*+(.test).ts",
-      "**/cli.ts"
-    ]
+    "exclude": ["**/*+(.test).ts", "**/cli.ts"]
   }
 }
