@@ -1,3 +1,2 @@
 # Marionette
-A writable, readable language for defining web-scraping routines in [Puppeteer](https://github.com/GoogleChrome/puppeteer).
-
+A readable, writable language for defining web automation processes in [Puppeteer](https://github.com/GoogleChrome/puppeteer).
