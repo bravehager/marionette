@@ -9,6 +9,8 @@ ROUTINE google
         EVALUATE hello_world
     END
 
+    RUN hello_world
+
 END
 
 RUN google
