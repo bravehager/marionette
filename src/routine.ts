@@ -2,8 +2,8 @@ import fs from "fs";
 import path from "path";
 import * as Puppeteer from "puppeteer";
 
-import { Lexer, CommandType } from "./lexer";
-import { Parser, Command } from "./parser";
+import { CommandType } from "./lexer";
+import { Command } from "./parser";
 
 /**
  * A routine returns an object consisting of a Puppeteer Browser and Page.
@@ -70,7 +70,6 @@ export class Routine {
                 routineMap.set(name, subRoutine);
                 break;
             case (CommandType.RUN):
-                console.log(routineMap);
                 let routine: Command[] | undefined = routineMap.get(command.args[0]);
                 if (routine) await this._execute(routine, variableMap, routineMap, browser, page);
                 commands.shift();
@@ -88,6 +87,9 @@ export class Routine {
                 await page.evaluate(script);
                 commands.shift();
                 break;
+            case (CommandType.EXIT):
+                await browser.close();
+                return true;
             default:
                 commands.shift();
                 break;

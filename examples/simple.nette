@@ -2,3 +2,5 @@
 
 DEF google https://www.google.com
 GOTO google 
+
+EXIT

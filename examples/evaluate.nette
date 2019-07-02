@@ -5,3 +5,5 @@ DEF hello_world examples/js/hello_world.js
 
 GOTO google
 EVALUATE hello_world
+
+EXIT
