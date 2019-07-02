@@ -910,10 +910,10 @@ img { max-width: 100%; }
 <nav class="tsd-navigation secondary">
 	<ul>
 		<li class=" tsd-kind-enum">
-			<a href="../enums/operation.html" class="tsd-kind-icon">Operation</a>
+			<a href="../enums/commandtype.html" class="tsd-kind-icon">Command<wbr>Type</a>
 		</li>
 		<li class=" tsd-kind-enum">
-			<a href="../enums/type.html" class="tsd-kind-icon">Type</a>
+			<a href="../enums/tokentype.html" class="tsd-kind-icon">Token<wbr>Type</a>
 		</li>
 		<li class=" tsd-kind-class">
 			<a href="command.html" class="tsd-kind-icon">Command</a>
@@ -924,13 +924,13 @@ img { max-width: 100%; }
 		<li class="current tsd-kind-class">
 			<a href="parser.html" class="tsd-kind-icon">Parser</a>
 			<ul>
-				<li class=" tsd-kind-constructor tsd-parent-kind-class">
-					<a href="parser.html#constructor" class="tsd-kind-icon">constructor</a>
-				</li>
-				<li class=" tsd-kind-method tsd-parent-kind-class">
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
 					<a href="parser.html#parse" class="tsd-kind-icon">parse</a>
 				</li>
 			</ul>
+		</li>
+		<li class=" tsd-kind-class tsd-is-not-exported">
+			<a href="parsingerror.html" class="tsd-kind-icon">Parsing<wbr>Error</a>
 		</li>
 		<li class=" tsd-kind-class">
 			<a href="routine.html" class="tsd-kind-icon">Routine</a>
@@ -948,7 +948,7 @@ img { max-width: 100%; }
 		<section class="tsd-panel tsd-comment">
 			<div class="tsd-comment tsd-typography">
 				<div class="lead">
-					<p>A Parser is responsible for converting .nette style files into runnable Routine objects.</p>
+					<p>The parser is responsible for converting an array of tokens into a runnable Marionette routine.</p>
 				</div>
 			</div>
 		</section>
@@ -965,60 +965,29 @@ img { max-width: 100%; }
 			<section class="tsd-panel tsd-index-panel">
 				<div class="tsd-index-content">
 					<section class="tsd-index-section ">
-						<h3>Constructors</h3>
-						<ul class="tsd-index-list">
-							<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="parser.html#constructor" class="tsd-kind-icon">constructor</a></li>
-						</ul>
-					</section>
-					<section class="tsd-index-section ">
 						<h3>Methods</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-method tsd-parent-kind-class"><a href="parser.html#parse" class="tsd-kind-icon">parse</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="parser.html#parse" class="tsd-kind-icon">parse</a></li>
 						</ul>
 					</section>
 				</div>
 			</section>
 		</section>
 		<section class="tsd-panel-group tsd-member-group ">
-			<h2>Constructors</h2>
-			<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
-				<a name="constructor" class="tsd-anchor"></a>
-				<h3>constructor</h3>
-				<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-					<li class="tsd-signature tsd-kind-icon">new <wbr>Parser<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="parser.html" class="tsd-signature-type">Parser</a></li>
-				</ul>
-				<ul class="tsd-descriptions">
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in <a href="https://github.com/bravehager/marionette/blob/ca6902a/src/parser.ts#L8">parser.ts:8</a></li>
-							</ul>
-						</aside>
-						<h4 class="tsd-returns-title">Returns <a href="parser.html" class="tsd-signature-type">Parser</a></h4>
-					</li>
-				</ul>
-			</section>
-		</section>
-		<section class="tsd-panel-group tsd-member-group ">
 			<h2>Methods</h2>
-			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
 				<a name="parse" class="tsd-anchor"></a>
-				<h3>parse</h3>
-				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+				<h3><span class="tsd-flag ts-flagStatic">Static</span> parse</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
 					<li class="tsd-signature tsd-kind-icon">parse<span class="tsd-signature-symbol">(</span>tokens<span class="tsd-signature-symbol">: </span><a href="../interfaces/token.html" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="routine.html" class="tsd-signature-type">Routine</a></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/bravehager/marionette/blob/ca6902a/src/parser.ts#L14">parser.ts:14</a></li>
+								<li>Defined in <a href="https://github.com/bravehager/marionette/blob/59b0fe1/src/parser.ts#L31">parser.ts:31</a></li>
 							</ul>
 						</aside>
-						<div class="tsd-comment tsd-typography">
-							<div class="lead">
-								<p>Parse a tokenized .nette file into a runnable Routine.</p>
-							</div>
-						</div>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>

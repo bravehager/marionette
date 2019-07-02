@@ -1,4 +1,4 @@
-# Marionette supports subroutines
+> Marionette supports subroutines
 
 ROUTINE google
     DEF google https://www.google.com

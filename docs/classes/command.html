@@ -910,10 +910,10 @@ img { max-width: 100%; }
 <nav class="tsd-navigation secondary">
 	<ul>
 		<li class=" tsd-kind-enum">
-			<a href="../enums/operation.html" class="tsd-kind-icon">Operation</a>
+			<a href="../enums/commandtype.html" class="tsd-kind-icon">Command<wbr>Type</a>
 		</li>
 		<li class=" tsd-kind-enum">
-			<a href="../enums/type.html" class="tsd-kind-icon">Type</a>
+			<a href="../enums/tokentype.html" class="tsd-kind-icon">Token<wbr>Type</a>
 		</li>
 		<li class="current tsd-kind-class">
 			<a href="command.html" class="tsd-kind-icon">Command</a>
@@ -938,6 +938,9 @@ img { max-width: 100%; }
 		<li class=" tsd-kind-class">
 			<a href="parser.html" class="tsd-kind-icon">Parser</a>
 		</li>
+		<li class=" tsd-kind-class tsd-is-not-exported">
+			<a href="parsingerror.html" class="tsd-kind-icon">Parsing<wbr>Error</a>
+		</li>
 		<li class=" tsd-kind-class">
 			<a href="routine.html" class="tsd-kind-icon">Routine</a>
 		</li>
@@ -951,6 +954,14 @@ img { max-width: 100%; }
 </nav>
 <div class="container container-main">
 	<div class="content-wrap">
+		<section class="tsd-panel tsd-comment">
+			<div class="tsd-comment tsd-typography">
+				<div class="lead">
+					<p>Commands are the building blocks of a Marionette routine. The &quot;AST&quot; for a Marionette program is essentially
+					just an array of commands.</p>
+				</div>
+			</div>
+		</section>
 		<section class="tsd-panel tsd-hierarchy">
 			<h3>Hierarchy</h3>
 			<ul class="tsd-hierarchy">
@@ -991,19 +1002,19 @@ img { max-width: 100%; }
 				<a name="constructor" class="tsd-anchor"></a>
 				<h3>constructor</h3>
 				<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-					<li class="tsd-signature tsd-kind-icon">new <wbr>Command<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><a href="../enums/operation.html" class="tsd-signature-type">Operation</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="command.html" class="tsd-signature-type">Command</a></li>
+					<li class="tsd-signature tsd-kind-icon">new <wbr>Command<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><a href="../enums/commandtype.html" class="tsd-signature-type">CommandType</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="command.html" class="tsd-signature-type">Command</a></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/bravehager/marionette/blob/ca6902a/src/command.ts#L5">command.ts:5</a></li>
+								<li>Defined in <a href="https://github.com/bravehager/marionette/blob/59b0fe1/src/parser.ts#L10">parser.ts:10</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5>type: <a href="../enums/operation.html" class="tsd-signature-type">Operation</a></h5>
+								<h5>type: <a href="../enums/commandtype.html" class="tsd-signature-type">CommandType</a></h5>
 							</li>
 						</ul>
 						<h4 class="tsd-returns-title">Returns <a href="command.html" class="tsd-signature-type">Command</a></h4>
@@ -1019,17 +1030,17 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">args<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/bravehager/marionette/blob/ca6902a/src/command.ts#L5">command.ts:5</a></li>
+						<li>Defined in <a href="https://github.com/bravehager/marionette/blob/59b0fe1/src/parser.ts#L10">parser.ts:10</a></li>
 					</ul>
 				</aside>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 				<a name="type" class="tsd-anchor"></a>
 				<h3>type</h3>
-				<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <a href="../enums/operation.html" class="tsd-signature-type">Operation</a></div>
+				<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <a href="../enums/commandtype.html" class="tsd-signature-type">CommandType</a></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/bravehager/marionette/blob/ca6902a/src/command.ts#L4">command.ts:4</a></li>
+						<li>Defined in <a href="https://github.com/bravehager/marionette/blob/59b0fe1/src/parser.ts#L9">parser.ts:9</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1040,19 +1051,19 @@ img { max-width: 100%; }
 				<a name="push" class="tsd-anchor"></a>
 				<h3>push</h3>
 				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-					<li class="tsd-signature tsd-kind-icon">push<span class="tsd-signature-symbol">(</span>arg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					<li class="tsd-signature tsd-kind-icon">push<span class="tsd-signature-symbol">(</span>argument<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/bravehager/marionette/blob/ca6902a/src/command.ts#L12">command.ts:12</a></li>
+								<li>Defined in <a href="https://github.com/bravehager/marionette/blob/59b0fe1/src/parser.ts#L17">parser.ts:17</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5>arg: <span class="tsd-signature-type">string</span></h5>
+								<h5>argument: <span class="tsd-signature-type">string</span></h5>
 							</li>
 						</ul>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>

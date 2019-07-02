@@ -910,10 +910,10 @@ img { max-width: 100%; }
 <nav class="tsd-navigation secondary">
 	<ul>
 		<li class=" tsd-kind-enum">
-			<a href="../enums/operation.html" class="tsd-kind-icon">Operation</a>
+			<a href="../enums/commandtype.html" class="tsd-kind-icon">Command<wbr>Type</a>
 		</li>
 		<li class=" tsd-kind-enum">
-			<a href="../enums/type.html" class="tsd-kind-icon">Type</a>
+			<a href="../enums/tokentype.html" class="tsd-kind-icon">Token<wbr>Type</a>
 		</li>
 		<li class=" tsd-kind-class">
 			<a href="command.html" class="tsd-kind-icon">Command</a>
@@ -929,6 +929,9 @@ img { max-width: 100%; }
 		<li class=" tsd-kind-class">
 			<a href="parser.html" class="tsd-kind-icon">Parser</a>
 		</li>
+		<li class=" tsd-kind-class tsd-is-not-exported">
+			<a href="parsingerror.html" class="tsd-kind-icon">Parsing<wbr>Error</a>
+		</li>
 		<li class=" tsd-kind-class">
 			<a href="routine.html" class="tsd-kind-icon">Routine</a>
 		</li>
@@ -942,13 +945,6 @@ img { max-width: 100%; }
 </nav>
 <div class="container container-main">
 	<div class="content-wrap">
-		<section class="tsd-panel tsd-comment">
-			<div class="tsd-comment tsd-typography">
-				<div class="lead">
-					<p>Marionette uses a simple lexer in order to deconstruct .nette files.</p>
-				</div>
-			</div>
-		</section>
 		<section class="tsd-panel tsd-hierarchy">
 			<h3>Hierarchy</h3>
 			<ul class="tsd-hierarchy">
@@ -976,24 +972,24 @@ img { max-width: 100%; }
 				<a name="tokenize" class="tsd-anchor"></a>
 				<h3><span class="tsd-flag ts-flagStatic">Static</span> tokenize</h3>
 				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-					<li class="tsd-signature tsd-kind-icon">tokenize<span class="tsd-signature-symbol">(</span>input<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/token.html" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol">[]</span></li>
+					<li class="tsd-signature tsd-kind-icon">tokenize<span class="tsd-signature-symbol">(</span>source<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/token.html" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol">[]</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/bravehager/marionette/blob/ca6902a/src/lexer.ts#L36">lexer.ts:36</a></li>
+								<li>Defined in <a href="https://github.com/bravehager/marionette/blob/59b0fe1/src/lexer.ts#L26">lexer.ts:26</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
 							<div class="lead">
-								<p>Convert a .nette file into an array of readable tokens.</p>
+								<p>Convert a .nette file into an array of parsable tokens.</p>
 							</div>
 						</div>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5>input: <span class="tsd-signature-type">string</span></h5>
+								<h5>source: <span class="tsd-signature-type">string</span></h5>
 								<div class="tsd-comment tsd-typography">
 								</div>
 							</li>

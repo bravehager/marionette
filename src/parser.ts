@@ -1,31 +1,45 @@
-import { Command } from "./command";
+import { TokenType, Token, CommandType } from "./lexer";
 import { Routine } from "./routine";
-import * as Lexer from "./lexer";
 
 /**
- * A Parser is responsible for converting .nette style files into runnable Routine objects.
+ * Commands are the building blocks of a Marionette routine. The "AST" for a Marionette program is essentially
+ * just an array of commands.
  */
-export class Parser {
-    constructor() { }
-    
-    /**
-     * Parse a tokenized .nette file into a runnable Routine.
-     */
-    parse(tokens: Lexer.Token[]): Routine {
-        let commands: Command[] = [];
-        for (const token of tokens) {
-            if (token.type == Lexer.Type.Command) commands.push(new Command(token.value as Lexer.Operation));
-            else commands[commands.length-1].push(token.value);
-        }
+export class Command {
+    type: CommandType;
+    args: string[];
 
-        return new Routine(commands);
+    constructor(type: CommandType) {
+        this.type = type;
+        this.args = [];
     }
 
-    /**
-     * Validate command type input based on Operation enum.
-     */
-    private _validateCommandType(command: Command): boolean {
-        if (Lexer.Operation[command.type] == null) throw new Error(`Invalid command type "${command.type}". Ignoring.`);
-        else return true;
+    push(argument: string) {
+        this.args.push(argument);
+    }
+}
+
+/**
+ * A generic error for handling unexpected tokens during parsing.
+ */
+class ParsingError extends Error { }
+
+/**
+ * The parser is responsible for converting an array of tokens into a runnable Marionette routine.
+ */
+export class Parser {
+    static parse(tokens: Token[]): Routine {
+        let commands: Command[] = [];
+
+        tokens.forEach((token) => {
+            try {
+                if (token.type == TokenType.Command) commands.push(new Command(token.value as CommandType));
+                else if (token.type == TokenType.String) commands[commands.length - 1].push(token.value as string);
+            } catch (e) {
+                throw new ParsingError(`Parsing error at token ${TokenType[token.type]}: ${token.value}`);
+            }
+        });
+
+        return new Routine(commands);
     }
 }

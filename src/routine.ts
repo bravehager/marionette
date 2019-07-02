@@ -1,9 +1,9 @@
 import fs from "fs";
 import path from "path";
-
-import { Command } from "./command";
-import { Operation } from "./lexer";
 import * as Puppeteer from "puppeteer";
+
+import { Lexer, CommandType } from "./lexer";
+import { Parser, Command } from "./parser";
 
 /**
  * A routine returns an object consisting of a Puppeteer Browser and Page.
@@ -44,6 +44,7 @@ export class Routine {
     }
 
     /**
+     * Recursively execute each discrete step in a Marionette routine
      * @param commands 
      * @param variableMap 
      * @param routineMap 
@@ -54,35 +55,35 @@ export class Routine {
         let command: Command = commands[0];
         command.args = command.args.map((arg) => variableMap.get(arg) || arg);
         switch (command.type) {
-            case (Operation.ROUTINE):
+            case (CommandType.ROUTINE):
                 let name = command.args[0];
                 let subRoutine: Command[] = [];
                 let routineStack: number[] = [1];
                 command = commands.shift() as Command;
                 while (routineStack.length != 0) {
                     command = commands.shift() as Command;
-                    if (command.type == Operation.ROUTINE) routineStack.push(1);
-                    if (command.type == Operation.END) routineStack.pop();
+                    if (command.type == CommandType.ROUTINE) routineStack.push(1);
+                    if (command.type == CommandType.END) routineStack.pop();
                     subRoutine.push(command);
                 }
                 subRoutine.pop(); // remove END command from subroutine
                 routineMap.set(name, subRoutine);
                 break;
-            case (Operation.RUN):
+            case (CommandType.RUN):
                 console.log(routineMap);
                 let routine: Command[] | undefined = routineMap.get(command.args[0]);
                 if (routine) await this._execute(routine, variableMap, routineMap, browser, page);
                 commands.shift();
                 break;
-            case (Operation.DEF):
+            case (CommandType.DEF):
                 variableMap.set(command.args[0], command.args[1]);
                 commands.shift();
                 break;
-            case (Operation.GOTO):
+            case (CommandType.GOTO):
                 await page.goto(command.args[0]);
                 commands.shift();
                 break;
-            case (Operation.EVALUATE):
+            case (CommandType.EVALUATE):
                 let script: string = fs.readFileSync(path.join(".", command.args[0]), { encoding: "utf-8" });
                 await page.evaluate(script);
                 commands.shift();
