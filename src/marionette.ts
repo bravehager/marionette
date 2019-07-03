@@ -5,21 +5,17 @@ import { Lexer } from "./lexer";
 import { Parser } from "./parser";
 import { Routine } from "./routine";
 
-/**
- * Main class for executing Marionette routines.
- */
+/** Main class for executing Marionette routines. */
 export class Marionette {
-  private browser: Puppeteer.Browser | undefined;
+  private browser?: Puppeteer.Browser;
 
-  constructor() {
-    this.browser = undefined;
-  }
+  constructor() {}
 
   /**
    * Initializes a Chromium instance via Puppeteer. Must be called before `Marionette.run()`.
    * @param options
    */
-  async launch(options?: Puppeteer.BrowserOptions) {
+  async launch(options?: Puppeteer.LaunchOptions | undefined) {
     this.browser = await puppeteer.launch(options);
     return this;
   }

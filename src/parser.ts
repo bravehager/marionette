@@ -1,10 +1,7 @@
 import { TokenType, Token, CommandType } from "./lexer";
 import { Routine } from "./routine";
 
-/**
- * Commands are the building blocks of a Marionette routine. The "AST" for a Marionette program is essentially
- * just an array of commands.
- */
+/** Commands are the building blocks of a Marionette routine. */
 export class Command {
   type: CommandType;
   args: string[];
@@ -19,18 +16,13 @@ export class Command {
   }
 }
 
-/**
- * A generic error for handling unexpected tokens during parsing.
- */
+/** A generic error for handling unexpected tokens during parsing. */
 export class ParsingError extends Error {}
 
-/**
- * The parser is responsible for converting an array of tokens into a runnable Marionette routine.
- */
+/** The parser is responsible for converting an array of tokens into a runnable Marionette routine. */
 export class Parser {
   static parse(tokens: Token[]): Routine {
     let commands: Command[] = [];
-
     tokens.forEach(token => {
       try {
         if (token.type == TokenType.Command)
@@ -38,8 +30,10 @@ export class Parser {
         else if (token.type == TokenType.String)
           commands[commands.length - 1].push(token.value as string);
       } catch (e) {
+        const { value, type, position } = token;
+        const { line, column } = position;
         throw new ParsingError(
-          `Parsing error at token ${TokenType[token.type]}: ${token.value}`
+          `Parsing error at token ${type} ${value} - ${line}:${column}`
         );
       }
     });

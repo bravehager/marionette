@@ -1,8 +1,13 @@
+const NEWLINE = RegExp(/(\r\n|\r|\n)/g);
+const NEWLINE_OR_SPACE = RegExp(/[ \n]/g);
+const COMMENT = RegExp(/>/g);
+
 export enum TokenType {
   Command,
   String,
   NewLine,
-  Comment
+  Comment,
+  Null
 }
 
 export enum CommandType {
@@ -18,6 +23,12 @@ export enum CommandType {
 export interface Token {
   type: TokenType;
   value?: CommandType | string;
+  position: Position;
+}
+
+export interface Position {
+  line: number;
+  column: number;
 }
 
 export class Lexer {
@@ -27,8 +38,10 @@ export class Lexer {
    */
   static tokenize(source: string): Token[] {
     let tokens: Token[] = [];
+    let position = { line: 1, column: 1 };
+
     while (source.length > 0) {
-      source = this._pushNextToken(source, tokens);
+      source = this._pushNextToken(source, tokens, position);
     }
     return tokens;
   }
@@ -39,34 +52,47 @@ export class Lexer {
    * @param source
    * @param tokens
    */
-  private static _pushNextToken(source: string, tokens: Token[]): string {
+  private static _pushNextToken(
+    source: string,
+    tokens: Token[],
+    position: Position
+  ): string {
+    let tokenPosition: Position = JSON.parse(JSON.stringify(position));
     let char: string = source.charAt(0);
-    if (char == " ") return source.substring(1);
+    if (char == " ") {
+      position.column++;
+      return source.substring(1);
+    }
 
     let type: TokenType;
     let value: CommandType | string | number = "";
 
-    if (char.match(/>/g)) {
+    if (char.match(COMMENT)) {
       type = TokenType.Comment;
-      while (!source.charAt(0).match(/(\r\n|\r|\n)/g)) {
+      while (!source.charAt(0).match(NEWLINE)) {
         value += source.charAt(0);
         source = source.substring(1);
+        position.column++;
       }
-      tokens.push({ type, value });
+      tokens.push({ type, value, position: tokenPosition });
       return source;
-    } else if (char.match(/(\r\n|\r|\n)/g)) {
+    } else if (char.match(NEWLINE)) {
       type = TokenType.NewLine;
-      tokens.push({ type });
+      tokens.push({ type, position: tokenPosition });
+      position.line++;
+      position.column = 1;
       return source.substring(1);
     } else {
-      while (!(source.charAt(0).match(/[ \n]/g) || source.length == 0)) {
+      while (
+        !(source.charAt(0).match(NEWLINE_OR_SPACE) || source.length == 0)
+      ) {
         value += source.charAt(0);
         source = source.substring(1);
+        position.column++;
       }
-      if (this._isCommand(value)) type = TokenType.Command;
-      else type = TokenType.String;
 
-      tokens.push({ type, value });
+      type = this._isCommand(value) ? TokenType.Command : TokenType.String;
+      tokens.push({ type, value, position: tokenPosition });
       return source;
     }
   }
