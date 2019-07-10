@@ -2,7 +2,7 @@ import * as Puppeteer from "puppeteer";
 import puppeteer from "puppeteer";
 
 import { Lexer } from "./lexer";
-import { Parser } from "./parser";
+import { parse } from "./parser";
 import { Routine } from "./routine";
 
 /** Main class for executing Marionette routines. */
@@ -22,13 +22,13 @@ export class Marionette {
 
   /**
    * Runs a routine.
-   * @param input
+   * @param source
    */
-  async run(input: string | Routine) {
+  async run(source: string | Routine) {
     let routine: Routine;
-    if (input instanceof Routine) {
-      routine = input;
-    } else routine = Parser.parse(Lexer.tokenize(input));
+    if (source instanceof Routine) {
+      routine = source;
+    } else routine = new Routine(parse(source));
     if (this.browser) {
       await routine.run(this.browser);
     } else

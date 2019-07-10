@@ -916,7 +916,13 @@ img { max-width: 100%; }
 			<a href="../enums/tokentype.html" class="tsd-kind-icon">Token<wbr>Type</a>
 		</li>
 		<li class=" tsd-kind-class">
+			<a href="buffer.html" class="tsd-kind-icon">Buffer</a>
+		</li>
+		<li class=" tsd-kind-class">
 			<a href="command.html" class="tsd-kind-icon">Command</a>
+		</li>
+		<li class=" tsd-kind-class">
+			<a href="eoferror.html" class="tsd-kind-icon">EOFError</a>
 		</li>
 		<li class=" tsd-kind-class">
 			<a href="lexer.html" class="tsd-kind-icon">Lexer</a>
@@ -936,22 +942,31 @@ img { max-width: 100%; }
 			</ul>
 		</li>
 		<li class=" tsd-kind-class">
-			<a href="parser.html" class="tsd-kind-icon">Parser</a>
-		</li>
-		<li class=" tsd-kind-class">
 			<a href="parsingerror.html" class="tsd-kind-icon">Parsing<wbr>Error</a>
 		</li>
 		<li class=" tsd-kind-class">
 			<a href="routine.html" class="tsd-kind-icon">Routine</a>
 		</li>
 		<li class=" tsd-kind-interface">
-			<a href="../interfaces/routineresponse.html" class="tsd-kind-icon">Routine<wbr>Response</a>
+			<a href="../interfaces/lexeroptions.html" class="tsd-kind-icon">Lexer<wbr>Options</a>
 		</li>
 		<li class=" tsd-kind-interface">
 			<a href="../interfaces/token.html" class="tsd-kind-icon">Token</a>
 		</li>
+		<li class=" tsd-kind-variable tsd-is-not-exported">
+			<a href="../globals.html#comment" class="tsd-kind-icon">COMMENT</a>
+		</li>
+		<li class=" tsd-kind-variable tsd-is-not-exported">
+			<a href="../globals.html#newline" class="tsd-kind-icon">NEWLINE</a>
+		</li>
+		<li class=" tsd-kind-variable tsd-is-not-exported">
+			<a href="../globals.html#space" class="tsd-kind-icon">SPACE</a>
+		</li>
 		<li class=" tsd-kind-variable">
 			<a href="../globals.html#nette" class="tsd-kind-icon">nette</a>
+		</li>
+		<li class=" tsd-kind-function">
+			<a href="../globals.html#parse" class="tsd-kind-icon">parse</a>
 		</li>
 	</ul>
 </nav>
@@ -1004,7 +1019,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in marionette.ts:12</li>
+								<li>Defined in <a href="https://github.com/bravehager/marionette/blob/32a0ef3/src/marionette.ts#L10">marionette.ts:10</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <a href="marionette.html" class="tsd-signature-type">Marionette</a></h4>
@@ -1018,13 +1033,13 @@ img { max-width: 100%; }
 				<a name="launch" class="tsd-anchor"></a>
 				<h3>launch</h3>
 				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-					<li class="tsd-signature tsd-kind-icon">launch<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Puppeteer.BrowserOptions</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<li class="tsd-signature tsd-kind-icon">launch<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">LaunchOptions</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in marionette.ts:22</li>
+								<li>Defined in <a href="https://github.com/bravehager/marionette/blob/32a0ef3/src/marionette.ts#L18">marionette.ts:18</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1035,7 +1050,7 @@ img { max-width: 100%; }
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <span class="tsd-signature-type">Puppeteer.BrowserOptions</span></h5>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <span class="tsd-signature-type">LaunchOptions</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
 								<div class="tsd-comment tsd-typography">
 								</div>
 							</li>
@@ -1048,13 +1063,13 @@ img { max-width: 100%; }
 				<a name="run" class="tsd-anchor"></a>
 				<h3>run</h3>
 				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-					<li class="tsd-signature tsd-kind-icon">run<span class="tsd-signature-symbol">(</span>input<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="routine.html" class="tsd-signature-type">Routine</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<li class="tsd-signature tsd-kind-icon">run<span class="tsd-signature-symbol">(</span>source<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="routine.html" class="tsd-signature-type">Routine</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in marionette.ts:31</li>
+								<li>Defined in <a href="https://github.com/bravehager/marionette/blob/32a0ef3/src/marionette.ts#L27">marionette.ts:27</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1065,7 +1080,7 @@ img { max-width: 100%; }
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5>input: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="routine.html" class="tsd-signature-type">Routine</a></h5>
+								<h5>source: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="routine.html" class="tsd-signature-type">Routine</a></h5>
 								<div class="tsd-comment tsd-typography">
 								</div>
 							</li>

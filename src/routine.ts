@@ -2,8 +2,8 @@ import fs from "fs";
 import path from "path";
 import * as Puppeteer from "puppeteer";
 
-import { CommandType } from "./lexer";
-import { Command } from "./parser";
+import { Command, parse } from "./parser";
+import { CommandType } from "./token";
 
 /** A Routine is a sequence of Puppeteer commands. */
 export class Routine {
@@ -38,32 +38,38 @@ export class Routine {
     page: Puppeteer.Page
   ): Promise<void> {
     let command: Command = commands[0];
-    command.args = command.args.map(arg => variableMap.get(arg) || arg);
+    command.args = command.args.map(
+      arg => variableMap.get(arg as string) || arg
+    );
 
     switch (command.type) {
       case CommandType.ROUTINE:
-        routineMap.set(command.args[0], this._getSubRoutine(commands));
+        routineMap.set(
+          command.args[0] as string,
+          this._getSubRoutine(commands)
+        );
         break;
 
       case CommandType.RUN:
-        let routine: Command[] | undefined = routineMap.get(command.args[0]);
+        let routine: Command[] | undefined = routineMap.get(command
+          .args[0] as string);
         if (routine)
           await this._execute(routine, variableMap, routineMap, browser, page);
         commands.shift();
         break;
 
       case CommandType.DEF:
-        variableMap.set(command.args[0], command.args[1]);
+        variableMap.set(command.args[0] as string, command.args[1] as string);
         commands.shift();
         break;
 
       case CommandType.GOTO:
-        await page.goto(command.args[0]);
+        await page.goto(command.args[0] as string);
         commands.shift();
         break;
 
       case CommandType.EVALUATE:
-        let filePath: string = path.join(".", command.args[0]);
+        let filePath: string = path.join(".", command.args[0] as string);
         let script: string = fs.readFileSync(filePath, { encoding: "utf-8" });
         await page.evaluate(script);
         commands.shift();

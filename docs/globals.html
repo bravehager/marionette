@@ -916,7 +916,13 @@ img { max-width: 100%; }
 			<a href="enums/tokentype.html" class="tsd-kind-icon">Token<wbr>Type</a>
 		</li>
 		<li class=" tsd-kind-class">
+			<a href="classes/buffer.html" class="tsd-kind-icon">Buffer</a>
+		</li>
+		<li class=" tsd-kind-class">
 			<a href="classes/command.html" class="tsd-kind-icon">Command</a>
+		</li>
+		<li class=" tsd-kind-class">
+			<a href="classes/eoferror.html" class="tsd-kind-icon">EOFError</a>
 		</li>
 		<li class=" tsd-kind-class">
 			<a href="classes/lexer.html" class="tsd-kind-icon">Lexer</a>
@@ -925,22 +931,31 @@ img { max-width: 100%; }
 			<a href="classes/marionette.html" class="tsd-kind-icon">Marionette</a>
 		</li>
 		<li class=" tsd-kind-class">
-			<a href="classes/parser.html" class="tsd-kind-icon">Parser</a>
-		</li>
-		<li class=" tsd-kind-class">
 			<a href="classes/parsingerror.html" class="tsd-kind-icon">Parsing<wbr>Error</a>
 		</li>
 		<li class=" tsd-kind-class">
 			<a href="classes/routine.html" class="tsd-kind-icon">Routine</a>
 		</li>
 		<li class=" tsd-kind-interface">
-			<a href="interfaces/routineresponse.html" class="tsd-kind-icon">Routine<wbr>Response</a>
+			<a href="interfaces/lexeroptions.html" class="tsd-kind-icon">Lexer<wbr>Options</a>
 		</li>
 		<li class=" tsd-kind-interface">
 			<a href="interfaces/token.html" class="tsd-kind-icon">Token</a>
 		</li>
+		<li class=" tsd-kind-variable tsd-is-not-exported">
+			<a href="globals.html#comment" class="tsd-kind-icon">COMMENT</a>
+		</li>
+		<li class=" tsd-kind-variable tsd-is-not-exported">
+			<a href="globals.html#newline" class="tsd-kind-icon">NEWLINE</a>
+		</li>
+		<li class=" tsd-kind-variable tsd-is-not-exported">
+			<a href="globals.html#space" class="tsd-kind-icon">SPACE</a>
+		</li>
 		<li class=" tsd-kind-variable">
 			<a href="globals.html#nette" class="tsd-kind-icon">nette</a>
+		</li>
+		<li class=" tsd-kind-function">
+			<a href="globals.html#parse" class="tsd-kind-icon">parse</a>
 		</li>
 	</ul>
 </nav>
@@ -964,10 +979,11 @@ img { max-width: 100%; }
 					<section class="tsd-index-section ">
 						<h3>Classes</h3>
 						<ul class="tsd-index-list">
+							<li class="tsd-kind-class"><a href="classes/buffer.html" class="tsd-kind-icon">Buffer</a></li>
 							<li class="tsd-kind-class"><a href="classes/command.html" class="tsd-kind-icon">Command</a></li>
+							<li class="tsd-kind-class"><a href="classes/eoferror.html" class="tsd-kind-icon">EOFError</a></li>
 							<li class="tsd-kind-class"><a href="classes/lexer.html" class="tsd-kind-icon">Lexer</a></li>
 							<li class="tsd-kind-class"><a href="classes/marionette.html" class="tsd-kind-icon">Marionette</a></li>
-							<li class="tsd-kind-class"><a href="classes/parser.html" class="tsd-kind-icon">Parser</a></li>
 							<li class="tsd-kind-class"><a href="classes/parsingerror.html" class="tsd-kind-icon">Parsing<wbr>Error</a></li>
 							<li class="tsd-kind-class"><a href="classes/routine.html" class="tsd-kind-icon">Routine</a></li>
 						</ul>
@@ -975,14 +991,23 @@ img { max-width: 100%; }
 					<section class="tsd-index-section ">
 						<h3>Interfaces</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-interface"><a href="interfaces/routineresponse.html" class="tsd-kind-icon">Routine<wbr>Response</a></li>
+							<li class="tsd-kind-interface"><a href="interfaces/lexeroptions.html" class="tsd-kind-icon">Lexer<wbr>Options</a></li>
 							<li class="tsd-kind-interface"><a href="interfaces/token.html" class="tsd-kind-icon">Token</a></li>
 						</ul>
 					</section>
 					<section class="tsd-index-section ">
 						<h3>Variables</h3>
 						<ul class="tsd-index-list">
+							<li class="tsd-kind-variable tsd-is-not-exported"><a href="globals.html#comment" class="tsd-kind-icon">COMMENT</a></li>
+							<li class="tsd-kind-variable tsd-is-not-exported"><a href="globals.html#newline" class="tsd-kind-icon">NEWLINE</a></li>
+							<li class="tsd-kind-variable tsd-is-not-exported"><a href="globals.html#space" class="tsd-kind-icon">SPACE</a></li>
 							<li class="tsd-kind-variable"><a href="globals.html#nette" class="tsd-kind-icon">nette</a></li>
+						</ul>
+					</section>
+					<section class="tsd-index-section ">
+						<h3>Functions</h3>
+						<ul class="tsd-index-list">
+							<li class="tsd-kind-function"><a href="globals.html#parse" class="tsd-kind-icon">parse</a></li>
 						</ul>
 					</section>
 				</div>
@@ -990,15 +1015,71 @@ img { max-width: 100%; }
 		</section>
 		<section class="tsd-panel-group tsd-member-group ">
 			<h2>Variables</h2>
+			<section class="tsd-panel tsd-member tsd-kind-variable tsd-is-not-exported">
+				<a name="comment" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagConst">Const</span> COMMENT</h3>
+				<div class="tsd-signature tsd-kind-icon">COMMENT<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol"> =&nbsp;/&gt;/g</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/bravehager/marionette/blob/32a0ef3/src/lexer.ts#L5">lexer.ts:5</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-variable tsd-is-not-exported">
+				<a name="newline" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagConst">Const</span> NEWLINE</h3>
+				<div class="tsd-signature tsd-kind-icon">NEWLINE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol"> =&nbsp;/\n/g</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/bravehager/marionette/blob/32a0ef3/src/lexer.ts#L4">lexer.ts:4</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-variable tsd-is-not-exported">
+				<a name="space" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagConst">Const</span> SPACE</h3>
+				<div class="tsd-signature tsd-kind-icon">SPACE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol"> =&nbsp;/[ \t]/g</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/bravehager/marionette/blob/32a0ef3/src/lexer.ts#L6">lexer.ts:6</a></li>
+					</ul>
+				</aside>
+			</section>
 			<section class="tsd-panel tsd-member tsd-kind-variable">
 				<a name="nette" class="tsd-anchor"></a>
 				<h3><span class="tsd-flag ts-flagConst">Const</span> nette</h3>
 				<div class="tsd-signature tsd-kind-icon">nette<span class="tsd-signature-symbol">:</span> <a href="classes/marionette.html" class="tsd-signature-type">Marionette</a><span class="tsd-signature-symbol"> =&nbsp;new Marionette()</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in marionette.ts:42</li>
+						<li>Defined in <a href="https://github.com/bravehager/marionette/blob/32a0ef3/src/marionette.ts#L39">marionette.ts:39</a></li>
 					</ul>
 				</aside>
+			</section>
+		</section>
+		<section class="tsd-panel-group tsd-member-group ">
+			<h2>Functions</h2>
+			<section class="tsd-panel tsd-member tsd-kind-function">
+				<a name="parse" class="tsd-anchor"></a>
+				<h3>parse</h3>
+				<ul class="tsd-signatures tsd-kind-function">
+					<li class="tsd-signature tsd-kind-icon">parse<span class="tsd-signature-symbol">(</span>source<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="classes/command.html" class="tsd-signature-type">Command</a><span class="tsd-signature-symbol">[]</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/bravehager/marionette/blob/32a0ef3/src/parser.ts#L19">parser.ts:19</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>source: <span class="tsd-signature-type">string</span></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <a href="classes/command.html" class="tsd-signature-type">Command</a><span class="tsd-signature-symbol">[]</span></h4>
+					</li>
+				</ul>
 			</section>
 		</section>
 		<footer class="with-border-bottom">

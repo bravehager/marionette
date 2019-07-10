@@ -1,103 +1,78 @@
-const NEWLINE = RegExp(/(\r\n|\r|\n)/g);
-const NEWLINE_OR_SPACE = RegExp(/[ \n]/g);
-const COMMENT = RegExp(/>/g);
+import { Token, TokenType, CommandType } from "./token";
+import { Buffer } from "./buffer";
 
-export enum TokenType {
-  Command,
-  String,
-  NewLine,
-  Comment,
-  Null
-}
+const NEWLINE = /\n/g;
+const COMMENT = />/g;
+const SPACE = /[ \t]/g;
 
-export enum CommandType {
-  ROUTINE = "ROUTINE",
-  RUN = "RUN",
-  GOTO = "GOTO",
-  EXIT = "EXIT",
-  END = "END",
-  EVALUATE = "EVALUATE",
-  DEF = "DEF"
-}
-
-export interface Token {
-  type: TokenType;
-  value?: CommandType | string;
-  position: Position;
-}
-
-export interface Position {
-  line: number;
-  column: number;
+export interface LexerOptions {
+  options?: object;
 }
 
 export class Lexer {
-  /**
-   * Convert a .nette file into an array of parsable tokens.
-   * @param source
-   */
-  static tokenize(source: string): Token[] {
-    let tokens: Token[] = [];
-    let position = { line: 1, column: 1 };
+  public source: string;
+  public options?: LexerOptions;
+  private buffer: Buffer;
 
-    while (source.length > 0) {
-      source = this._pushNextToken(source, tokens, position);
-    }
-    return tokens;
+  private static startToken: Token = {
+    type: TokenType.SOF,
+    line: 0,
+    column: 0
+  };
+
+  constructor(source: string, options?: LexerOptions) {
+    this.source = source;
+    this.options = options;
+    this.buffer = new Buffer(source);
   }
 
-  /**
-   * Remove the next token from the source string and push it into the token array,
-   * responsible for classifying each token as a Command/NewLine/etc..
-   * @param source
-   * @param tokens
-   */
-  private static _pushNextToken(
-    source: string,
-    tokens: Token[],
-    position: Position
-  ): string {
-    let tokenPosition: Position = JSON.parse(JSON.stringify(position));
-    let char: string = source.charAt(0);
-    if (char == " ") {
-      position.column++;
-      return source.substring(1);
+  /** Read a token and advance the Lexer. */
+  public advance(): Token {
+    if (!this.buffer.hasNext())
+      return { type: TokenType.EOF, line: -1, column: -1 };
+
+    let char = this.buffer.next();
+    while (char.match(SPACE)) {
+      char = this.buffer.next();
     }
 
-    let type: TokenType;
-    let value: CommandType | string | number = "";
+    let line: number = this.buffer.line;
+    let column: number = this.buffer.column - 1;
 
-    if (char.match(COMMENT)) {
-      type = TokenType.Comment;
-      while (!source.charAt(0).match(NEWLINE)) {
-        value += source.charAt(0);
-        source = source.substring(1);
-        position.column++;
+    let value: CommandType | string | number = "";
+    if (char.match(NEWLINE)) {
+      return { type: TokenType.NewLine, line, column };
+    } else if (char.match(COMMENT)) {
+      while (this.buffer.hasNext() && !char.match(NEWLINE)) {
+        value += char;
+        char = this.buffer.next();
       }
-      tokens.push({ type, value, position: tokenPosition });
-      return source;
-    } else if (char.match(NEWLINE)) {
-      type = TokenType.NewLine;
-      tokens.push({ type, position: tokenPosition });
-      position.line++;
-      position.column = 1;
-      return source.substring(1);
+      return { value, type: TokenType.Comment, line, column };
     } else {
       while (
-        !(source.charAt(0).match(NEWLINE_OR_SPACE) || source.length == 0)
+        this.buffer.hasNext() &&
+        !char.match(NEWLINE) &&
+        !char.match(SPACE)
       ) {
-        value += source.charAt(0);
-        source = source.substring(1);
-        position.column++;
+        value += char;
+        char = this.buffer.next();
       }
 
-      type = this._isCommand(value) ? TokenType.Command : TokenType.String;
-      tokens.push({ type, value, position: tokenPosition });
-      return source;
+      let type: TokenType;
+
+      if (CommandType[value as CommandType]) type = TokenType.Command;
+      else if (value.match(/^\d+$/g)) type = TokenType.Int;
+      else type = TokenType.String;
+
+      return { value, type, line, column };
     }
   }
 
-  private static _isCommand(value: string) {
-    return CommandType[value as CommandType] != null;
+  public tokenize(): Token[] {
+    let tokens = [Lexer.startToken];
+    do {
+      tokens.push(this.advance());
+    } while (tokens[tokens.length - 1].type != TokenType.EOF);
+    return tokens;
   }
 }
