@@ -1,6 +1,8 @@
+export type TokenValue = CommandType | string;
+
 export interface Token {
   type: TokenType;
-  value?: CommandType | string;
+  value?: TokenValue;
   line: number;
   column: number;
 }
@@ -11,7 +13,6 @@ export enum TokenType {
   Command = "Command",
   String = "String",
   BlockString = "BlockString",
-  Int = "Int",
   Comment = "Comment",
   NewLine = "NewLine"
 }

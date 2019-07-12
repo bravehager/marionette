@@ -1,4 +1,4 @@
-import { Token, TokenType, CommandType } from "./token";
+import { Token, TokenValue, TokenType, CommandType } from "./token";
 import { Buffer } from "./buffer";
 
 const NEWLINE = /\n/g;
@@ -38,8 +38,8 @@ export class Lexer {
 
     let line: number = this.buffer.line;
     let column: number = this.buffer.column - 1;
+    let value: TokenValue = "";
 
-    let value: CommandType | string | number = "";
     if (char.match(NEWLINE)) {
       return { type: TokenType.NewLine, line, column };
     } else if (char.match(COMMENT)) {
@@ -58,16 +58,15 @@ export class Lexer {
         char = this.buffer.next();
       }
 
-      let type: TokenType;
-
+      let type;
       if (CommandType[value as CommandType]) type = TokenType.Command;
-      else if (value.match(/^\d+$/g)) type = TokenType.Int;
       else type = TokenType.String;
 
       return { value, type, line, column };
     }
   }
 
+  /* Convert a source file into an array of tokens */
   public tokenize(): Token[] {
     let tokens = [Lexer.startToken];
     do {
